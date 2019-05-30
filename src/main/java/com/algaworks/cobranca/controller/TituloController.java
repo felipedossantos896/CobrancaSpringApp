@@ -58,22 +58,24 @@ public class TituloController {
 		}
 	}
 	
-	// Pesquisar
+	/* Método que realiza a consulta de títulos*/
 	
 	@RequestMapping
 	public ModelAndView pesquisar() {
 		List<Titulo> todosTitulos = titulos.findAll();
 		ModelAndView mv = new ModelAndView("PesquisaTitulo");
 		mv.addObject("titulos", todosTitulos);
+		
 		return mv;
 	}
 	
-	// Editar
+	/* Método que edita um título */
 	
 	@RequestMapping("/{codigo}")
 	public ModelAndView edicao(@PathVariable("codigo") Titulo titulo) {
 		ModelAndView mv = new ModelAndView(CADASTRO_VIEW);
 		mv.addObject(titulo);
+		
 		return mv;
 	}
 	
@@ -81,9 +83,7 @@ public class TituloController {
 	
 	@RequestMapping(value = "/{codigo}/receber", method = RequestMethod.PUT)
 	public @ResponseBody String receber(@PathVariable Long codigo) {
-	    cadastroTituloService.receber(codigo);
-	    
-	    return "OK";
+	    return cadastroTituloService.receber(codigo);
 	}
 	
 	/* Exclui um título */
@@ -95,6 +95,8 @@ public class TituloController {
 		attributes.addFlashAttribute("mensagem", "Título excluído com sucesso");
 		return "redirect:/titulos";
 	}
+	
+	/* Cria uma variável listando todo status título para ser usada na view */
 	
 	@ModelAttribute("todosStatusTitulo")
 	public List<StatusTitulo> todosStatusTitulo() {
