@@ -39,6 +39,8 @@ public class TituloController {
 		return mv;
 	}
 	
+	// Salvar
+	
 	@RequestMapping(method = RequestMethod.POST)
 	public String salvar(@Validated Titulo titulo, Errors errors, RedirectAttributes attributes) {
 		if(errors.hasErrors()) {
@@ -55,6 +57,8 @@ public class TituloController {
 		}
 	}
 	
+	// Pesquisar
+	
 	@RequestMapping
 	public ModelAndView pesquisar() {
 		List<Titulo> todosTitulos = titulos.findAll();
@@ -63,12 +67,16 @@ public class TituloController {
 		return mv;
 	}
 	
+	// Editar
+	
 	@RequestMapping("/{codigo}")
 	public ModelAndView edicao(@PathVariable("codigo") Titulo titulo) {
 		ModelAndView mv = new ModelAndView(CADASTRO_VIEW);
 		mv.addObject(titulo);
 		return mv;
 	}
+	
+	// Excluir
 	
 	@RequestMapping(value="{codigo}", method = RequestMethod.DELETE)
 	public String excluir(@PathVariable Long codigo, RedirectAttributes attributes) {
