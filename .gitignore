@@ -29,3 +29,5 @@ HELP.md
 .mvn/
 mvnw
 mvnw.cmd
+
+.vscode
